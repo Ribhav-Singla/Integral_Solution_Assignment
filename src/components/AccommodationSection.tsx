@@ -27,7 +27,7 @@ const HotelCard: React.FC<HotelProps> = ({
     <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-xl overflow-hidden`}>
       <div className="h-24 relative">
         <img src={image} alt={name} className="w-full h-full object-cover" />
-        <div className="absolute top-2 left-2 bg-indigo-600 rounded px-2 py-0.5 text-white text-xs">
+        <div className="absolute bottom-2 left-2 bg-indigo-600 rounded px-2 py-0.5 text-white text-xs">
           ⭐ {rating}
         </div>
       </div>
@@ -60,6 +60,8 @@ const HotelCard: React.FC<HotelProps> = ({
 };
 
 const AccommodationSection = () => {
+  const { isDarkMode } = useTheme();
+  
   const hotels: HotelProps[] = [
     {
       name: 'Shinagawa Prince Hotel',
@@ -90,7 +92,7 @@ const AccommodationSection = () => {
     >
       <div className="flex justify-between items-center mb-2">
         <h2 className="text-lg font-semibold">Accommodation</h2>
-        <button className="text-sm text-indigo-600 font-medium">See all</button>
+        <button className={`text-sm ${isDarkMode ? 'text-lime-500' : 'text-indigo-600'} font-medium`}>See all</button>
       </div>
       
       <div className="grid grid-cols-2 gap-3">

@@ -1,5 +1,5 @@
-import { Home, Search, Plus, Heart, User } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Home, User } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useTheme } from '../contexts/ThemeContext';
 
 interface BottomNavigationProps {
@@ -12,9 +12,6 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ onExpandPane, activ
   
   const navItems = [
     { id: 'home', icon: Home, label: 'Home' },
-    { id: 'search', icon: Search, label: 'Search' },
-    { id: 'add', icon: Plus, label: 'Add' },
-    { id: 'favorites', icon: Heart, label: 'Favorites' },
     { id: 'profile', icon: User, label: 'Profile' }
   ];
 

@@ -38,19 +38,19 @@ const ActivityCard: React.FC<ActivityProps> = ({
         </div>
         <div className="w-2/3 p-3">
           <h3 className="font-medium text-base leading-tight">{name}</h3>
-          <p className="text-xs opacity-80 mb-2">{location}</p>
+          <br />
           
           <div className="text-xs">
             <div className="flex items-center mb-1">
-              <Clock size={12} className="mr-1.5 opacity-70" />
+            
               <span>Timing: {time} {timeOfDay}</span>
             </div>
             <div className="flex items-center mb-1">
-              <Calendar size={12} className="mr-1.5 opacity-70" />
+             
               <span>Duration: {duration}</span>
             </div>
             <div className="flex items-center">
-              <MapPin size={12} className="mr-1.5 opacity-70" />
+             
               <span>Pick up: {pickUp}</span>
             </div>
           </div>
@@ -113,26 +113,26 @@ const ActivitiesSection = () => {
     >
       <div className="flex justify-between items-center mb-2">
         <h2 className="text-lg font-semibold">Activities</h2>
-        <button className="text-sm text-indigo-600 font-medium">See all</button>
+        <button className={`text-sm font-medium ${!isDarkMode ? 'text-indigo-600' : 'text-lime-500'}`}>See all</button>
       </div>
       
       <div className="mb-4">
-        <div className={`inline-flex rounded-lg p-1 mb-3 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
+        <div className={`flex space-x-2 mb-3 overflow-hidden`}>
           <button 
-            className={`px-3 py-1.5 rounded-md text-sm font-medium transition ${
+            className={`px-4 py-2 text-sm font-medium transition rounded-lg ${
               activeView === 'day' 
-                ? 'bg-indigo-600 text-white' 
-                : 'text-gray-500 hover:text-gray-700'
+                ? isDarkMode ? 'bg-lime-500 text-black' : 'bg-indigo-600 text-white'
+                : isDarkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-700 text-gray-300'
             }`}
             onClick={() => setActiveView('day')}
           >
             Day Plan
           </button>
           <button 
-            className={`px-3 py-1.5 rounded-md text-sm font-medium transition ${
+            className={`px-4 py-2 text-sm font-medium transition rounded-lg ${
               activeView === 'all' 
-                ? 'bg-indigo-600 text-white' 
-                : 'text-gray-500 hover:text-gray-700'
+                ? isDarkMode ? 'bg-lime-500 text-black' : 'bg-indigo-600 text-white'
+                : isDarkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-700 text-gray-300'
             }`}
             onClick={() => setActiveView('all')}
           >
@@ -150,18 +150,25 @@ const ActivitiesSection = () => {
               <button
                 key={index}
                 onClick={() => setSelectedDay(index)}
-                className={`flex flex-col items-center justify-center min-w-[3.5rem] h-16 rounded-lg ${
+                className={`relative flex flex-col items-center justify-center min-w-[3.5rem] h-16 rounded-lg ${
                   selectedDay === index
-                    ? 'bg-indigo-600 text-white'
+                    ? isDarkMode ? 'bg-lime-500 text-black' : 'bg-indigo-600 text-white'
                     : isDarkMode
                       ? 'bg-gray-800 text-gray-300'
-                      : 'bg-white text-gray-700'
+                      : 'bg-gray-700 text-gray-300'
                 } transition-colors`}
               >
-                <span className="text-xs font-medium">{day}</span>
-                <span className="text-lg font-bold">{dayNum}</span>
                 {index === 0 && (
-                  <span className="text-[0.6rem] opacity-80">{month}</span>
+                  <div className={`absolute top-0 left-0 h-full w-6 ${isDarkMode ? 'bg-lime-500 text-black' : 'bg-indigo-600 text-white'} flex items-center justify-center rounded-l-lg`}>
+                    <span className="text-[0.6rem] font-bold transform -rotate-90">JAN</span>
+                  </div>
+                )}
+                <span className={`text-xs font-medium ${index === 0 ? 'ml-4 pl-1' : ''}`}>{day}</span>
+                <span className={`text-lg font-bold ${index === 0 ? 'ml-4' : ''}`}>{dayNum}</span>
+                {index === dates.length - 1 && (
+                  <div className="absolute top-0 right-0 h-full w-6 bg-gray-500 flex items-center justify-center rounded-r-lg">
+                    <span className="text-[0.6rem] text-white font-bold transform -rotate-90">FEB</span>
+                  </div>
                 )}
               </button>
             );
@@ -171,13 +178,12 @@ const ActivitiesSection = () => {
       
       <div className={`${isDarkMode ? 'bg-gray-800/50' : 'bg-white/50'} rounded-lg p-3`}>
         <div className="flex items-center mb-3">
-          <div className={`flex items-center justify-center w-6 h-6 rounded-full ${isDarkMode ? 'bg-indigo-600' : 'bg-indigo-600'} text-white font-medium text-xs mr-2`}>
-            1
+          <div className={`flex items-center justify-center rounded-full px-3 py-1 ${isDarkMode ? 'bg-lime-500 text-black' : 'bg-indigo-600 text-white'} font-medium text-sm mr-2`}>
+            Day 1 <span className="ml-2">27.01.2025</span>
           </div>
-          <h3 className="font-medium">Day 1, 27.01.2025</h3>
-          <div className="ml-auto flex items-center text-indigo-600 text-sm">
-            <span className="font-medium">3</span>
-            <span className="ml-1">Activities</span>
+          <div className={`ml-auto flex items-center text-sm ${!isDarkMode ? 'text-indigo-600' : 'text-lime-500'}`}>
+            <span className="mr-1">🧳</span>
+            <span className="font-medium">3 Activities</span>
           </div>
         </div>
         
@@ -185,11 +191,7 @@ const ActivitiesSection = () => {
           <ActivityCard key={index} {...activity} />
         ))}
         
-        <div className="relative py-2">
-          <div className={`absolute left-1/2 -translate-x-1/2 px-4 py-1 rounded-md ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'} text-xs font-medium`}>
-            You can only view and comment on this trip
-          </div>
-        </div>
+        
       </div>
     </motion.div>
   );

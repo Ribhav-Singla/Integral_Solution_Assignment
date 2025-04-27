@@ -14,7 +14,7 @@ const FlightDetails = () => {
     >
       <div className="flex justify-between items-center mb-2">
         <h2 className="text-lg font-semibold">Flight Details</h2>
-        <button className="text-sm text-indigo-600 font-medium">See all</button>
+        <button className={`text-sm ${isDarkMode ? 'text-lime-500' : 'text-indigo-600'} font-medium`}>See all</button>
       </div>
       
       <div className={`${isDarkMode ? 'bg-indigo-600' : 'bg-indigo-600'} rounded-xl p-4 text-white flex items-center justify-between`}>

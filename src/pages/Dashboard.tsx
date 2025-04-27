@@ -5,7 +5,7 @@ import FlightDetails from '../components/FlightDetails';
 import AccommodationSection from '../components/AccommodationSection';
 import ActivitiesSection from '../components/ActivitiesSection';
 import { useTheme } from '../contexts/ThemeContext';
-import ThemeToggle from '../components/ThemeToggle';
+import Navbar from '../components/Navbar';
 import ExpandedPane from '../components/ExpandedPane';
 
 const Dashboard = () => {
@@ -18,9 +18,7 @@ const Dashboard = () => {
 
   return (
     <div className={`min-h-screen pb-16 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-[#f7f7f7] text-gray-900'} transition-colors duration-300`}>
-      <div className="absolute top-4 right-4 z-10">
-        <ThemeToggle />
-      </div>
+      <Navbar title="Dashboard" />
       
       <div className="max-w-md mx-auto px-5 py-5">
         <header className="flex justify-between items-center mb-5">
