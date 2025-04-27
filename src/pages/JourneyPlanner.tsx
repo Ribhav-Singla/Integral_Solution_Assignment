@@ -5,6 +5,7 @@ import { MapPin, Calendar, ArrowRight, ChevronDown } from 'lucide-react';
 import Button from '../components/ui/Button';
 import Navbar from '../components/Navbar';
 import TravelerTypeButton from '../components/TravelerTypeButton';
+import IntegrationDemo from '../components/IntegrationDemo';
 
 type TravelerType = 'solo' | 'couple' | 'family' | 'friends' | null;
 type DurationType = 'weekend' | 'week' | 'twoweeks' | 'month' | '';
@@ -141,6 +142,12 @@ const JourneyPlanner = () => {
         
         <div className="mt-10 w-full">
           <Button onClick={handleContinue} className="w-full">Continue</Button>
+        </div>
+        
+        {/* API Integration Demo Section */}
+        <div className="mt-12 mb-6">
+          <h2 className="text-xl font-semibold mb-4">Try Our API Integrations</h2>
+          <IntegrationDemo />
         </div>
       </div>
     </div>

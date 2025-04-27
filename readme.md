@@ -1,8 +1,28 @@
-# Journey Planner Application Documentation
+# Journey Planner - Travel Planning Application
 
-## Project Structure
+A modern travel planning application built with React, TypeScript, and Tailwind CSS. This application helps users plan their trips by selecting destinations, travel duration, and travel companions.
 
-The project follows a modern React application structure built with Vite, TypeScript, and Tailwind CSS:
+## ✨ Features
+
+- Interactive journey planning interface
+- Dark/light mode toggle
+- Destination search with autocomplete
+- Trip duration selection
+- Traveler type selection (solo, couple, family, friends)
+- Dashboard view with trip details
+- Mobile-friendly responsive design
+- Multiple API integrations for travel data
+
+## 🛠️ Technology Stack
+
+- **Frontend**: React 18, TypeScript
+- **Styling**: Tailwind CSS
+- **Routing**: React Router v6
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Build Tool**: Vite
+
+## 📋 Project Structure
 
 ```
 /src
@@ -10,26 +30,79 @@ The project follows a modern React application structure built with Vite, TypeSc
     /ui            - Basic UI elements like Button
   /contexts        - React context providers
   /pages           - Main application pages/routes
+  /services        - API service integrations
   index.css        - Global styles
   main.tsx         - Application entry point
   App.tsx          - Main routing component
 ```
 
-### Key Technologies
-- React 18 with TypeScript
-- React Router for navigation
-- Tailwind CSS for styling
-- Framer Motion for animations
-- Lucide React for icons
-- Vite as the build tool
+## 🚀 Getting Started
 
-## Component Hierarchy
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/journey-planner.git
+   cd journey-planner
+   ```
+
+2. Install dependencies:
+   ```
+   npm install
+   ```
+
+3. Start the development server:
+   ```
+   npm run dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## 🔌 API Integrations
+
+The application includes mock integrations with the following APIs:
+
+### 1. Google Maps API
+- Location search and autocomplete
+- Geolocation features
+- Distance calculation between locations
+- Credit-based usage system (200 free credits)
+
+### 2. Weather API
+- Current weather conditions for destinations
+- Weather forecasts for trip duration
+- Weather alerts for severe conditions
+- Credit-based usage system (50 free credits)
+
+### 3. Flight Search API
+- Flight availability between destinations
+- Price comparison across airlines
+- Booking functionality
+- Credit-based usage system (100 free credits)
+
+These integrations demonstrate how to work with external APIs while managing rate limits and usage restrictions through a credit system.
+
+## 📱 User Flow
+
+1. User enters destination, duration, and traveler type on the JourneyPlanner page
+2. User can test API integrations to check weather and flight information
+3. After clicking "Continue", user is navigated to the Dashboard
+4. Dashboard displays trip details across multiple sections
+5. User can interact with the BottomNavigation to expand different features
+
+## 🏗️ Component Hierarchy
 
 ```
 App
 ├── JourneyPlanner (page)
 │   ├── Navbar
 │   ├── TravelerTypeButton (multiple)
+│   ├── IntegrationDemo
 │   └── Button
 │
 └── Dashboard (page)
@@ -42,38 +115,17 @@ App
     └── ExpandedPane (conditional)
 ```
 
-### Main Components
+## 📦 Build for Production
 
-1. **Pages:**
-   - `JourneyPlanner`: Initial page for collecting trip details
-   - `Dashboard`: Main application dashboard showing trip information
+To build the application for production:
 
-2. **Layout Components:**
-   - `Navbar`: App header with navigation controls
-   - `BottomNavigation`: Mobile-style bottom nav bar
+```
+npm run build
+```
 
-3. **Feature Components:**
-   - `TripSummary`: Overview of the planned journey
-   - `FlightDetails`: Flight information display
-   - `AccommodationSection`: Hotel and lodging information
-   - `ActivitiesSection`: Activities and attractions
-   - `ExpandedPane`: Expandable detailed view for different sections
+This will generate optimized assets in the `dist` directory.
 
-4. **UI Components:**
-   - `Button`: Reusable button component
-   - `TravelerTypeButton`: Specialized button for traveler selection
-
-5. **Context Providers:**
-   - `ThemeContext`: Handles dark/light mode functionality
-
-## User Flow
-
-1. User enters destination, duration, and traveler type on the JourneyPlanner page
-2. After clicking "Continue", user is navigated to the Dashboard
-3. Dashboard displays trip details across multiple sections
-4. User can interact with the BottomNavigation to expand different panes for more options
-
-## Challenges and Solutions
+## 🧪 Key Technical Challenges and Solutions
 
 ### Responsive Design
 - **Challenge**: Creating a UI that works well on both mobile and desktop
@@ -83,13 +135,13 @@ App
 - **Challenge**: Implementing a smooth dark/light mode transition
 - **Solution**: Created a ThemeContext provider with state management for theme preference
 
-### Component Organization
-- **Challenge**: Structuring components for reusability without overengineering
-- **Solution**: Created a hierarchy with specialized components for specific features while keeping common UI elements in a separate directory
+### External API Integration
+- **Challenge**: Managing multiple API dependencies with rate limits
+- **Solution**: Created service abstraction layers with credit systems to simulate usage limits
 
 ### State Management
 - **Challenge**: Managing user selections across the application flow
-- **Solution**: Used component state for page-specific data and could expand to context or a state management library for more complex data needs
+- **Solution**: Used component state for page-specific data and React Context for global state
 
 ### Performance
 - **Challenge**: Ensuring smooth animations and transitions
